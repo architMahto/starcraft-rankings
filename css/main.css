@@ -3,4 +3,41 @@
 /*------ CSS Styling ------*/
 body {
   background-image: url("../img/wall2-1920x1200.jpg");
+  font-family: 'Roboto', sans-serif;
+}
+
+#container {
+  position: fixed;
+  width: 80%;
+  height: 69%;
+  background: linear-gradient(to bottom, #b5bdc8 0%,#002555 0%,#000D20 100%);
+  border: 2px solid #002555;
+  border-radius: 10px;
+  top: 30%;
+  left: 10%;
+  transform: translateX(-10%), translateY(-30%);
+  padding: 0 10px;
+  color: #5387A1;
+}
+
+#container h1 {
+  text-align: center;
+  color: #FFFFFF;
+  border-bottom: 2px solid #052D5F;
+}
+
+#container table {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#container th, td {
+  width: 14.3%;
+  font-size: 16px;
+  text-align: center;
+}
+
+#container th {
+  color: #FFFFFF;
+  font-size: 18px;
 }

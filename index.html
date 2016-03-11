@@ -1,14 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="rankingApp">
   <head>
     <title>Starcraft Rankings</title>
-    <!-- Include CSS  -->
-    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <!-- Include CSS and fonts  -->
+    <link rel="stylesheet" href="css/main.css" type="text/css" /><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
     <!-- Include scripts  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="js/app.js" type="text/javascript"></script>
   </head>
-  <body>
-
+  <body ng-controller="rankingController">
+    <div id="container">
+      <h1>Rankings</h1>
+      <!-- <nav>
+        <ul class="pagination">
+          <li>
+            <a href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li>
+            <a href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav> -->
+      <!-- <ul>
+        <li ng-repeat="player in players | limitTo:pageSize">
+          {{player}}
+        </li>
+      </ul> -->
+      <table>
+        <tr class="header">
+          <th ng-repeat="tableHeader in tableHeaders">
+            {{tableHeader}}
+          </th>
+        </tr>
+        <tr ng-repeat="player in players | limitTo:pageSize">
+          <td>{{player.username}}</td>
+          <td>{{player.name}}</td>
+          <td>{{player.region}}</td>
+          <td>{{player.race}}</td>
+          <td>{{player.wins}}</td>
+          <td>{{player.losses}}</td>
+          <td>{{player.winPrct}}</td>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>
