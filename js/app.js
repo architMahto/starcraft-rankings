@@ -7,7 +7,7 @@ angular.module('rankingApp', [])
   })
   .controller('rankingController', ['$scope', '$http', function($scope, $http) {
     $scope.players = [];
-    $scope.tableHeaders = [];
+    $scope.tableHeaders = ['Username', 'Fullname', 'Region', 'Race', 'Games Played', 'Wins', 'Losses', 'Win Percentage'];
     $scope.currentPage = 0;
     $scope.pageSize = 20;
     $scope.numberOfPages = function() {
@@ -26,14 +26,10 @@ angular.module('rankingApp', [])
       this.wins = wins;
       this.losses = losses;
       this.games = this.wins + this.losses;
-      this.winPrct = ((this.wins/(this.games))).toFixed(3);
+      this.winPrct = (this.wins/this.games).toFixed(3);
     };
 
     function pushToPlayers(jsonObject) {
-      jsonObject.data.cols.forEach(function(arrEl) {
-        $scope.tableHeaders.push(arrEl)
-      });
-      $scope.tableHeaders.push("Win Percentage");
       jsonObject.data.data.forEach(function(arrEl) {
         $scope.players.push(new Player(arrEl[0], arrEl[1], arrEl[2], arrEl[3], arrEl[4], arrEl[5]));
       });

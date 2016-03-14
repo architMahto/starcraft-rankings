@@ -15,29 +15,65 @@
   </head>
   <body ng-controller="rankingController">
     <div id="wrapper">
-      <div id="header">
-      </div>
+      <div id="header"></div>
 
       <div id="container">
 
         <h1>Rankings</h1>
 
-        <table>
-          <tr class="header">
-            <th ng-repeat="tableHeader in tableHeaders">
-              {{tableHeader}}
-            </th>
-          </tr>
-          <tr ng-repeat="player in players | orderBy: '-winPrct'| startFrom:currentPage*pageSize | limitTo:pageSize">
-            <td>{{player.username}}</td>
-            <td>{{player.name}}</td>
-            <td>{{player.region}}</td>
-            <td>{{player.race}}</td>
-            <td>{{player.wins}}</td>
-            <td>{{player.losses}}</td>
-            <td>{{player.winPrct}}</td>
-          </tr>
-        </table>
+        <!-- <div class="stats-area">
+          <div class="numPlayers">
+            <div class="stat-title"><p>Number Of Players</p></div>
+            <div class="stat-info">{{players.length}}</div>
+          </div>
+          <div class="numGames">
+            <div class="stat-title"><p>Number Of Games Played</p></div>
+            <div class="stat-info"></div>
+          </div>
+          <div class="racePopularity">
+            <div class="stat-title"><p>Race Popularity</p></div>
+            <div class="stat-info"></div></div>
+          </div>
+        </div> -->
+
+        <div class="stats-area">
+          <table>
+            <tr class="stats-header">
+              <th>Number Of Players</th>
+              <th>Number Of Games Played</th>
+              <th>Race Popularity</th>
+            </tr>
+            <tr>
+              <td>{{players.length}}</td>
+              <td>{{players.length}}</td>
+              <td>
+                Terran: {{players.length}},
+                Zerg: {{players.length}},
+                Protoss: {{players.length}}
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="ranking-area">
+          <table>
+            <tr class="header">
+              <th ng-repeat="tableHeader in tableHeaders">
+                {{tableHeader}}
+              </th>
+            </tr>
+            <tr ng-repeat="player in players | orderBy: '-winPrct'| startFrom:currentPage*pageSize | limitTo:pageSize">
+              <td>{{player.username}}</td>
+              <td>{{player.name}}</td>
+              <td>{{player.region}}</td>
+              <td>{{player.race}}</td>
+              <td>{{player.games}}</td>
+              <td>{{player.wins}}</td>
+              <td>{{player.losses}}</td>
+              <td>{{player.winPrct}}</td>
+            </tr>
+          </table>
+        </div>
 
         <div class="pagination-area">
           <button ng-disabled="currentPage == 0" ng-click="currentPage=0">
