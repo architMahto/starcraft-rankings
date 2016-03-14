@@ -10,51 +10,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
   </head>
   <body ng-controller="rankingController">
-    <div id="container">
-      <h1>Rankings</h1>
-      <!-- <nav>
-        <ul class="pagination">
-          <li>
-            <a href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li>
-            <a href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav> -->
-      <!-- <ul>
-        <li ng-repeat="player in players | limitTo:pageSize">
-          {{player}}
-        </li>
-      </ul> -->
-      <table>
-        <tr class="header">
-          <th ng-repeat="tableHeader in tableHeaders">
-            {{tableHeader}}
-          </th>
-        </tr>
-        <tr ng-repeat="player in players | limitTo:pageSize">
-          <td>{{player.username}}</td>
-          <td>{{player.name}}</td>
-          <td>{{player.region}}</td>
-          <td>{{player.race}}</td>
-          <td>{{player.wins}}</td>
-          <td>{{player.losses}}</td>
-          <td>{{player.winPrct}}</td>
-        </tr>
-      </table>
+    <div id="wrapper">
+      <div id="header">
+      </div>
+
+      <div id="container">
+
+        <h1>Rankings</h1>
+
+        <table>
+          <tr class="header">
+            <th ng-repeat="tableHeader in tableHeaders">
+              {{tableHeader}}
+            </th>
+          </tr>
+          <tr ng-repeat="player in players | orderBy: '-winPrct'| startFrom:currentPage*pageSize | limitTo:pageSize">
+            <td>{{player.username}}</td>
+            <td>{{player.name}}</td>
+            <td>{{player.region}}</td>
+            <td>{{player.race}}</td>
+            <td>{{player.wins}}</td>
+            <td>{{player.losses}}</td>
+            <td>{{player.winPrct}}</td>
+          </tr>
+        </table>
+
+        <div class="pagination-area">
+          <button ng-disabled="currentPage == 0" ng-click="currentPage=0">
+            First
+          </button>
+          <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+          </button>
+          <h5>{{currentPage+1}}</h5>
+          <button ng-disabled="currentPage >= players.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            Next
+          </button>
+          <button ng-disabled="currentPage >= players.length/pageSize - 1" ng-click="currentPage=(players.length/pageSize) - 1">
+            Last
+          </button>
+        </div>
+      </div>
+
+      <div id="footer">
+        <p>Copyright &copy 2016</p>
+      </div>
     </div>
   </body>
 </html>
