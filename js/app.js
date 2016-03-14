@@ -1,10 +1,14 @@
-angular.module('rankingApp', []);
-
 angular.module('rankingApp', [])
+  .filter('startFrom', function() {
+    return function(input, start) {
+      start = +start;
+      return input.slice(start);
+    }
+  })
   .controller('rankingController', ['$scope', '$http', function($scope, $http) {
     $scope.players = [];
     $scope.tableHeaders = [];
-    $scope.currentPage = 1;
+    $scope.currentPage = 0;
     $scope.pageSize = 20;
     $scope.numberOfPages = function() {
       return Math.ceil($scope.players.length/$scope.pageSize);
@@ -21,17 +25,18 @@ angular.module('rankingApp', [])
       this.race = race;
       this.wins = wins;
       this.losses = losses;
-      this.winPrct = +((this.wins/(this.wins+this.losses))*100).toFixed(2);
+      this.games = this.wins + this.losses;
+      this.winPrct = ((this.wins/(this.games))).toFixed(3);
     };
 
     function pushToPlayers(jsonObject) {
       jsonObject.data.cols.forEach(function(arrEl) {
         $scope.tableHeaders.push(arrEl)
       });
-      $scope.tableHeaders.push("Win Ratio");
+      $scope.tableHeaders.push("Win Percentage");
       jsonObject.data.data.forEach(function(arrEl) {
         $scope.players.push(new Player(arrEl[0], arrEl[1], arrEl[2], arrEl[3], arrEl[4], arrEl[5]));
       });
     };
 
-    }]);
+  }]);
