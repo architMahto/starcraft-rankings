@@ -21,21 +21,6 @@
 
         <h1>Rankings</h1>
 
-        <!-- <div class="stats-area">
-          <div class="numPlayers">
-            <div class="stat-title"><p>Number Of Players</p></div>
-            <div class="stat-info">{{players.length}}</div>
-          </div>
-          <div class="numGames">
-            <div class="stat-title"><p>Number Of Games Played</p></div>
-            <div class="stat-info"></div>
-          </div>
-          <div class="racePopularity">
-            <div class="stat-title"><p>Race Popularity</p></div>
-            <div class="stat-info"></div></div>
-          </div>
-        </div> -->
-
         <div class="stats-area">
           <table>
             <tr class="stats-header">
@@ -62,7 +47,8 @@
                 {{tableHeader}}
               </th>
             </tr>
-            <tr ng-repeat="player in players | orderBy: '-winPrct'| startFrom:currentPage*pageSize | limitTo:pageSize">
+            <tr ng-repeat="player in players |  startFrom:currentPage*pageSize | limitTo:pageSize">
+              <td>{{player.rank}}</td>
               <td>{{player.username}}</td>
               <td>{{player.name}}</td>
               <td>{{player.region}}</td>
