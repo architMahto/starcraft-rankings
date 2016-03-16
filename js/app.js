@@ -7,6 +7,7 @@ angular.module('rankingApp', [])
   })
   .controller('rankingController', ['$scope', '$http', function($scope, $http) {
     $scope.players = [];
+    $scope.filteredPlayers = [];
     $scope.tableHeaders = ['Username', 'Fullname', 'Region', 'Race', 'Games Played', 'Wins', 'Losses', 'Win Percentage'];
     $scope.currentPage = 0;
     $scope.pageSize = 20;
